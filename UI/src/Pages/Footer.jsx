@@ -26,7 +26,7 @@ const Footer = () => {
               Professional task management solution with role-based access control for modern teams.
             </p>
             <div className="flex space-x-4">
-              <a href="https://linkedin.com/in/ayush-ojha" target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-200 transition">
+              <a href="https://www.linkedin.com/in/ayush-ojha-977945253/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-200 transition">
                 <FaLinkedin className="h-5 w-5" />
               </a>
               <a href="https://github.com/ayushojhabxr" target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-200 transition">
@@ -168,5 +168,6 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export default Footer;
