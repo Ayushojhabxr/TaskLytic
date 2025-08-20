@@ -1,0 +1,33 @@
+@import "tailwindcss";
+.button-15 {
+  background: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 6px; /* Slightly more rounded */
+  color: white;
+  font-size: 14px; /* Similar to your text-sm */
+  font-weight: 500; /* Matches font-medium */
+  padding: 8px 16px; /* Similar to px-4 py-2 */
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.button-15:hover {
+  background: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+}
+
+.button-15:active {
+  background: linear-gradient(#3D94D9, #0067B9);
+  border-color: #006DBC;
+}
+
+.button-15:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+
+.button-15:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
