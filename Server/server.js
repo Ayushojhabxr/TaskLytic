@@ -20,13 +20,8 @@ const MONGO_URL = process.env.MONGO_URL;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://task-lytic.vercel.app",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  })
-);
+app.use(cors({ origin: true, credentials: true }));
+
 
 // MongoDB Connection (Updated)
 mongoose
@@ -52,4 +47,5 @@ app.use('/api/posts', forumPostRoutes);
 app.listen(port, () => {
   console.log(` Server running on http://localhost:${port}`);
 });
+
 
