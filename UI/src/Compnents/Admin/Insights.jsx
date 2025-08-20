@@ -41,7 +41,7 @@ const Insights = () => {
   // Fetch all users
   const fetchAllUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users/alluser', {
+      const response = await axios.get('https://tasklytic-1.onrender.com/api/users/alluser', {
         withCredentials: true
       });
       const allUsers = response.data.admins;
@@ -64,7 +64,7 @@ const Insights = () => {
   // Fetch all tasks
   const fetchAllTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/tasks/alltasks', {
+      const response = await axios.get('https://tasklytic-1.onrender.com/api/tasks/alltasks', {
         withCredentials: true
       });
       
@@ -172,38 +172,35 @@ const Insights = () => {
 
   // Handle save new task
   const handleSaveCreate = async () => {
-  try {
-    const values = await createForm.validateFields();
-    
-    const taskData = {
-      title: values.title,
-      description: values.description,
-     
-     deadline: values.deadline.toISOString(),
-      createdBy: values.createdBy,
-      internIds: values.assignedInterns.map(internId => ({
-        internId,
-       startDate: values.startDate.toISOString() 
-       
-       
-      }))
-    };
-    console.log("Task Data" , taskData)
-    
-    await axios.post(
-      'http://localhost:5000/api/tasks/create',
-      taskData,
-      { withCredentials: true }
-    );
-    
-    message.success('Task created successfully!');
-    setShowCreateForm(false);
-    fetchAllTasks();
-  } catch (error) {
-    console.error('Error creating task:', error);
-    message.error('Failed to create task');
-  }
-};
+    try {
+      const values = await createForm.validateFields();
+      
+      const taskData = {
+        title: values.title,
+        description: values.description,
+        deadline: values.deadline.toISOString(),
+        createdBy: values.createdBy,
+        internIds: values.assignedInterns.map(internId => ({
+          internId,
+          startDate: values.startDate.toISOString() 
+        }))
+      };
+      console.log("Task Data" , taskData)
+      
+      await axios.post(
+        'https://tasklytic-1.onrender.com/api/tasks/create',
+        taskData,
+        { withCredentials: true }
+      );
+      
+      message.success('Task created successfully!');
+      setShowCreateForm(false);
+      fetchAllTasks();
+    } catch (error) {
+      console.error('Error creating task:', error);
+      message.error('Failed to create task');
+    }
+  };
   // Table columns
   const columns = [
     {
@@ -557,5 +554,6 @@ if (showCreateForm) {
     </div>
   );
 };
+
 
 export default Insights;
