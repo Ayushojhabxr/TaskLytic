@@ -76,10 +76,10 @@ It allows organizations to efficiently manage their interns, mentors, and admini
 
 ### Community Forum
 ![Forum Overview](./screenshots/forum.png)
-![Forum Detail](./screenshots/"forum1 (1).png")
+![Forum Detail](./screenshots/"forum1.png")
 
 ### Intern Dashboard
-![Intern Dashboard](./screenshots/"intern, das2.png")
+![Intern Dashboard](./screenshots/"interndas2.png")
 ![Intern Tasks](./screenshots/intern-task.png)
 ![Intern Dashboard View](./screenshots/intern_dash.png)
 
