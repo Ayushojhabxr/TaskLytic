@@ -93,7 +93,7 @@ const InternDashboard = () => {
   // Fetch intern profile
   const fetchInternProfile = useCallback(async () => {
     try {
-      const res = await axios.get('https://tasklytic-1.onrender.com/api/users/myprofile', {
+      const res = await axios.get('http://localhost:5000/api/users/myprofile', {
         withCredentials: true
       });
       console.log("data", res.data);
@@ -110,7 +110,7 @@ const InternDashboard = () => {
   const fetchTasks = useCallback(async () => {
     if (!internId) return;
     try {
-      const res = await axios.get(`https://tasklytic-1.onrender.com/api/tasks/intern/${internId}`, {
+      const res = await axios.get(`http://localhost:5000/api/tasks/intern/${internId}`, {
         withCredentials: true
       });
       setTasks(res.data);
@@ -124,7 +124,7 @@ const InternDashboard = () => {
   const fetchFeedbacks = useCallback(async () => {
     if (!internId) return;
     try {
-      const res = await axios.get(`https://tasklytic-1.onrender.com/api/feedback/intern/${internId}`, {
+      const res = await axios.get(`http://localhost:5000/api/feedback/intern/${internId}`, {
         withCredentials: true,
       });
       setFeedbacks(res.data);
@@ -136,7 +136,7 @@ const InternDashboard = () => {
   // Fetch reports
   const fetchReports = useCallback(async () => {
     try {
-      const response = await axios.get('https://tasklytic-1.onrender.com/api/posts/get', {
+      const response = await axios.get('http://localhost:5000/api/posts/get', {
         withCredentials: true
       });
       setReports(response.data);
@@ -148,7 +148,7 @@ const InternDashboard = () => {
   // Fetch all users
   const fetchUsers = useCallback(async () => {
     try {
-      const res = await axios.get("https://tasklytic-1.onrender.com/api/users/alluser", {
+      const res = await axios.get("http://localhost:5000/api/users/alluser", {
         withCredentials: true
       });
       setUsers(res.data.admins); // Assuming 'admins' array contains all user types
@@ -301,7 +301,7 @@ const InternDashboard = () => {
       formData.append("comment", values.comment || '');
 
       await axios.patch(
-        `https://tasklytic-1.onrender.com/api/tasks/${currentTask._id}/submit/${internId}`,
+        `http://localhost:5000/api/tasks/${currentTask._id}/submit/${internId}`,
         formData,
         {
           withCredentials: true,
@@ -331,7 +331,7 @@ const InternDashboard = () => {
         createdAt: new Date().toISOString()
       };
 
-      await axios.post('https://tasklytic-1.onrender.com/api/posts/create', reportData, {
+      await axios.post('http://localhost:5000/api/posts/create', reportData, {
         withCredentials: true
       });
 
@@ -827,4 +827,3 @@ const InternDashboard = () => {
 };
 
 export default InternDashboard;
-
