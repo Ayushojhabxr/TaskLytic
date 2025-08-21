@@ -111,6 +111,6 @@ cd client
 npm run dev
 ```
 ---
-### 🤝** Contributing ** 
+### 🤝**Contributing** 
 Contributions are welcome!
 If you’d like to add new features, fix bugs, or improve documentation, feel free to open a pull request.
