@@ -35,7 +35,7 @@ const Users = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/users/alluser', {
+      const response = await axios.get('https://tasklytic-1.onrender.com/api/users/alluser', {
         withCredentials: true,
         Accept: "*/*",
       });
@@ -88,7 +88,7 @@ const sortedUsers = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.c
   // Handle create user form submission
   const handleCreateUser = async (values) => {
     try {
-      await axios.post('http://localhost:5000/api/users/register', values, {
+      await axios.post('https://tasklytic-1.onrender.com/api/users/register', values, {
         withCredentials: true
       });
       
@@ -528,5 +528,6 @@ const sortedUsers = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.c
 
   return isCreating ? createFormView() : tableView();
 };
+
 
 export default Users;
