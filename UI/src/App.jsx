@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './Pages/Navbar';
 import Footer from './Pages/Footer';
 import Home from './Pages/Home';
@@ -16,34 +16,111 @@ import Insights from './Compnents/Admin/Insights';
 import UserProfileModal from './Compnents/profilemodal';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {verifyToken} from "./Auth/authservice.js";
+import ProtectedRoute from "./Auth/ProtectedRoutes.jsx";
 import NotFound from './Compnents/NotFound.jsx';
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Skip verification for login page
+    if (location.pathname === "/login") return;
+
+    (async () => {
+      const isValid = await verifyToken();
+    console.log("Token valid?", isValid);
+      if (!isValid) {
+        navigate('/');
+      }
+    })();
+  }, [location.pathname, navigate]);
+
   return (
     <div className="flex flex-col min-h-screen w-full">
       <Navbar />
       <main className="flex-1 bg-gray-100 pt-16">
         <Routes>
-          {/* Fallback */}
           <Route path='*' element={<NotFound />} />
-
-          {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={
+            <ProtectedRoute allowedRoles={["admin", "intern", "mentor"]}>
+              <UserProfileModal />
+            </ProtectedRoute>
+          } />
 
-          {/* Dashboards (no protection) */}
-          <Route path="/profile" element={<UserProfileModal />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
+          {/* Protected Routes */}
+<Route
+  path="/admin-dashboard"
+  element={
+    <ProtectedRoute allowedRoles={["admin"]}>
+      <AdminDashboard />
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/users"
+  element={
+    <ProtectedRoute allowedRoles={["admin"]}>
+      <Users />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/intern-dashboard"
+  element={
+    <ProtectedRoute allowedRoles={["intern"]}>
+      <InternDashboard />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/mentor-dashboard"
+  element={
+    <ProtectedRoute allowedRoles={["mentor"]}>
+      <MentorDashboard />
+    </ProtectedRoute>
+  }
+/>
+
+          {/* Admin */}
+         
           <Route path="/users" element={<Users />} />
-          <Route path="/intern-dashboard" element={<InternDashboard />} />
-          <Route path="/mentor-dashboard" element={<MentorDashboard />} />
+          <Route path="/insights" element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Insights />
+            </ProtectedRoute>
+          }
+          />
 
-          {/* Extra pages */}
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/intern-tasks" element={<InternTaskDashboard />} />
-          <Route path="/intern-forum" element={<CommunityReportForm />} />
-          <Route path="/mentor-tasks" element={<MentorTaskDashboard />} />
+          {/* Intern */}
+          
+          <Route path="/intern-tasks" element={
+            <ProtectedRoute allowedRoles={["intern"]}>
+              <InternTaskDashboard />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/intern-forum" element={
+            <ProtectedRoute allowedRoles={["admin", "intern", "mentor"]}>
+              <CommunityReportForm />
+            </ProtectedRoute>
+          } />
+
+          {/* Mentor */}
+         
+          <Route path="/mentor-tasks" element={
+            <ProtectedRoute allowedRoles={["mentor"]}>
+              <MentorTaskDashboard />
+            </ProtectedRoute>
+          } />
+
         </Routes>
       </main>
       <Footer />
