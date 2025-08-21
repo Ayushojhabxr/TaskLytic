@@ -35,7 +35,7 @@ const InternTaskDashboard = () => {
   // Fetch intern profile
   const fetchInternProfile = React.useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/myprofile', {
+      const res = await axios.get('https://tasklytic-1.onrender.com/api/users/myprofile', {
         withCredentials: true
       });
       setInternId(res.data.user._id);
@@ -52,7 +52,7 @@ const InternTaskDashboard = () => {
     if (!internId) return;
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/tasks/intern/${internId}`, {
+      const res = await axios.get(`https://tasklytic-1.onrender.com/api/tasks/intern/${internId}`, {
         withCredentials: true
       });
       setTasks(res.data);
@@ -71,7 +71,7 @@ useEffect(() => {
   if (internId) {
     const fetchFeedbacks = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/feedback/intern/${internId}`, {
+        const res = await axios.get(`https://tasklytic-1.onrender.com/api/feedback/intern/${internId}`, {
           withCredentials: true,
         });
         setFeedbacks(res.data);
@@ -83,7 +83,7 @@ useEffect(() => {
     fetchTasks();     // already declared with useCallback
     fetchFeedbacks(); // now defined inside this useEffect
   }
-}, [internId, fetchTasks]); // ✅ add fetchTasks as well since you're calling it
+}, [internId, fetchTasks]); //  add fetchTasks as well since you're calling it
 
 
   
@@ -121,7 +121,7 @@ useEffect(() => {
     formData.append("comment", values.comment || '');
 
     await axios.patch(
-      `http://localhost:5000/api/tasks/${currentTask._id}/submit/${internId}`,
+      `https://tasklytic-1.onrender.com/api/tasks/${currentTask._id}/submit/${internId}`,
       formData,
       {
         withCredentials: true,
@@ -214,7 +214,7 @@ const isDeadlinePassed = (deadline) => {
 
   const fetchAllUsers = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/users/alluser", {
+    const res = await axios.get("https://tasklytic-1.onrender.com/api/users/alluser", {
       withCredentials: true
     });
     setUsers(res.data.admins);
@@ -576,5 +576,6 @@ const getMentorName = (mentorId) => {
     </div>
   );
 };
+
 
 export default InternTaskDashboard;
