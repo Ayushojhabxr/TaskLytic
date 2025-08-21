@@ -109,7 +109,7 @@ npm start
 # Run the App - Frontend
 cd client
 npm run dev
----
+```
 
 
 🤝 Contributing
