@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -22,7 +21,7 @@ function Login() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch('https://tasklytic-1.onrender.com/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,28 +42,21 @@ function Login() {
       // Store user data and token
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
-      localStorage.setItem("role", data.user.role)
-    
-     
+      localStorage.setItem("role", data.user.role);
       localStorage.setItem("name", data.user.firstName);
 
-
-      // Redirect based on role (would use navigate in actual app)
-      switch(data.user.role) {
+      // Redirect based on role
+      switch (data.user.role) {
         case 'admin':
-          console.log('Redirecting to admin dashboard');
           navigate('/admin-dashboard');
           break;
         case 'intern':
-          console.log('Redirecting to intern dashboard');
           navigate('/intern-dashboard');
           break;
         case 'mentor':
-          console.log('Redirecting to mentor dashboard');
           navigate('/mentor-dashboard');
           break;
         default:
-          console.log('Redirecting to home');
           navigate('/');
       }
 
@@ -308,5 +300,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;
