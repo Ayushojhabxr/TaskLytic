@@ -86,38 +86,30 @@ _Add screenshots of dashboards here for better presentation._
 ```bash
 git clone https://github.com/yourusername/tasklytic.git
 cd tasklytic
-Install Dependencies
-Frontend
 
 
+# Install Dependencies - Frontend
 cd client
 npm install
-Backend
 
-
-
+# Install Dependencies - Backend
 cd server
 npm install
 
-
-
-Setup Environment Variables
-Create a .env file in the backend with the following:
-
+# Setup Environment Variables
+# Create a .env file in the backend with the following
 MONGO_URI=your_mongo_db_uri
 JWT_SECRET=your_secret_key
 PORT=5001
 
-
-Run the App
-Backend
-
+# Run the App - Backend
 cd server
 npm start
 
-Frontend
+# Run the App - Frontend
 cd client
 npm run dev
+
 
 🤝 Contributing
 Contributions are welcome!
