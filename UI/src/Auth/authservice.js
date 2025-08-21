@@ -1,6 +1,6 @@
 export async function verifyToken() {
   try {
-    const res = await fetch("/api/verify-token", {
+    const res = await fetch("https://tasklytic-1.onrender.com/api/verify-token", {
       method: "GET",
       credentials: "include" // send cookies with request
     });
@@ -20,3 +20,4 @@ export async function verifyToken() {
     return false;
   }
 }
+
