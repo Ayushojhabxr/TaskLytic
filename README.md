@@ -79,9 +79,9 @@ It allows organizations to efficiently manage their interns, mentors, and admini
 ![Forum Detail](./screenshots/"forums.png")
 
 ### Intern Dashboard
+![Intern Dashboard View](./screenshots/intern_dash.png)
 ![Intern Dashboard](./screenshots/"interndas2.png")
 ![Intern Tasks](./screenshots/intern-task.png)
-![Intern Dashboard View](./screenshots/intern_dash.png)
 
 ### Mentor Dashboard
 ![Mentor Dashboard](./screenshots/mentordash.png)
