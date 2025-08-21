@@ -10,14 +10,13 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const valid = await verifyToken();
-      if (!valid) {
+      const user = await verifyToken(); // user object or null
+      if (!user) {
         setIsAuthorized(false);
       } else {
-        // Role-based check
+        // Role-based check directly from backend response
         if (allowedRoles && allowedRoles.length > 0) {
-          const userRole = localStorage.getItem("role");
-          setIsAuthorized(allowedRoles.includes(userRole));
+          setIsAuthorized(allowedRoles.includes(user.role));
         } else {
           setIsAuthorized(true);
         }
@@ -36,14 +35,17 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   if (!isAuthorized) {
-    toast.error("Please log in first and if you don't have credentials contact admin", {
-      position: "top-right",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
+    toast.error(
+      "Please log in first and if you don't have credentials contact admin",
+      {
+        position: "top-right",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      }
+    );
     return <Navigate to="/" replace />;
   }
 
