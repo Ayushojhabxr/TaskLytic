@@ -55,7 +55,7 @@ const Navbar = () => {
 
    const handleLogout = async () => {
       try {
-        await axios.get("http://localhost:5000/api/users/logout", {
+        await axios.get("https://tasklytic-1.onrender.com/api/users/logout", {
           withCredentials: true,
         });
         localStorage.removeItem("token");
@@ -115,7 +115,7 @@ const Navbar = () => {
 
   const fetchInternProfile = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/myprofile', {
+      const res = await axios.get('https://tasklytic-1.onrender.com/api/users/myprofile', {
         withCredentials: true
       });
       setInternProfile(res.data.user);
@@ -328,3 +328,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
